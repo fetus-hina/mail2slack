@@ -1,0 +1,10 @@
+{
+    "require": {
+        "php": ">= 7.0",
+        "ext-imap": "*",
+        "ext-mailparse": "*",
+        "ext-mbstring": "*",
+        "frlnc/php-slack": "^1.0",
+        "php-mime-mail-parser/php-mime-mail-parser": "^2.2"
+    }
+}
