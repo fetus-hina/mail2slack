@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d53b327c3892af5a0ccf055d839c0106",
-    "content-hash": "6d91abee5887af2374b0cc9614f346dc",
+    "hash": "1090570c9b22e6e415532bd2417f8a31",
+    "content-hash": "d0d27e2b4d6f0a0299f59b360bc9acab",
     "packages": [
         {
             "name": "frlnc/php-slack",
@@ -140,6 +140,7 @@
     "prefer-lowest": false,
     "platform": {
         "php": ">= 7.0",
+        "ext-curl": "*",
         "ext-imap": "*",
         "ext-mailparse": "*",
         "ext-mbstring": "*"

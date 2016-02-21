@@ -6,4 +6,8 @@ return [
         'username'      => 'Received Email',
         'icon_emoji'    => ':envelope_with_arrow:',
     ],
+
+    // return false to skip notify to slack
+    // function (PhpMimeMailParser\Parser $parser): bool { return false; }
+    'filter' => null,
 ];

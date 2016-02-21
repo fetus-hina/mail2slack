@@ -8,9 +8,22 @@ use PhpMimeMailParser\Parser as MailParser;
 
 class Application
 {
+    public $config;
+
+    public function __construct()
+    {
+        $this->config = require(__DIR__ . '/../config/slack.php');
+    }
+
     public function run(): int
     {
         $parser = $this->loadMail('php://stdin');
+        $filter = $this->config['filter'] ?? null;
+        if (is_callable($filter)) {
+            if (!$filter($parser)) {
+                return 1;
+            }
+        }
         $text = $this->format($parser);
         if ($text === '') {
             return 1;
@@ -56,14 +69,13 @@ class Application
 
     private function postSlack(string $text): bool
     {
-        $config = require(__DIR__ . '/../config/slack.php');
         $interactor = new SlackCurlInteractor;
         $interactor->setResponseFactory(new SlackResponseFactory);
-        $commander = new SlackCommander($config['token'], $interactor);
+        $commander = new SlackCommander($this->config['token'], $interactor);
         $response = $commander->execute(
             'chat.postMessage',
             array_merge(
-                $config['postMessage'],
+                $this->config['postMessage'],
                 [
                     'text' => $text,
                 ]
